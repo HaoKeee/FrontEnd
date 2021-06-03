@@ -3,10 +3,7 @@
         <nav height="10%">12</nav>
         <div class="nav-height-offset"> </div>
         <main>
-            <item></item>
-            <!-- <items-container>
-
-            </items-container> -->
+            <items-container />
         </main>
         <footer>444</footer>
     </div>
@@ -23,12 +20,11 @@ export default {
         }
     },
     components:{
-        ItemsContainer: ItemsContainer,
         Item: Item,
+        ItemsContainer: ItemsContainer,
     }
 }
 </script>
-
 <style lang="less">
 .container{
     display: block;
@@ -44,14 +40,17 @@ export default {
         height: @nav-height;
     }
     main {
+        display: flex;
+        justify-content: left;
+        align-items: flex-start;
+        flex-wrap: wrap;
         background-color: #303030;
-        border: 5px solid#fff;
+        border: 1px solid#fff;
         border-radius: 5px;
         box-sizing: border-box;
-        min-height: 100vh;
         width: 80%;
-        padding: .5rem;
-        margin: 0 auto;
+        padding: 15px 1%;
+        margin: 10px auto;
     }
 }
 </style>

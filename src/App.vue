@@ -4,6 +4,7 @@
 
 <script setup>
 import ItemsPage from './components/Items/ItemsPage.vue'
+
 </script>
 
 <style>

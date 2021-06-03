@@ -1,4 +1,5 @@
 {
+  "name": "frontend",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -8,7 +9,7 @@
   "dependencies": {
     "element-plus": "^1.0.2-beta.45",
     "less": "^4.1.1",
-    "less-loader": "^9.0.0",
+    "vant": "^3.0.18",
     "vue": "^3.0.5"
   },
   "devDependencies": {
