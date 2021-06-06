@@ -7,10 +7,11 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "element-plus": "^1.0.2-beta.45",
     "less": "^4.1.1",
-    "vant": "^3.0.18",
-    "vue": "^3.0.5"
+    "vue": "^3.0.5",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.3",
