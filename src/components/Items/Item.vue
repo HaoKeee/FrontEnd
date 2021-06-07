@@ -107,16 +107,16 @@ export default {
   font-size: 14px;
   width: @min-item-width;
   margin: 0 0 @item-margin 0;
-  @media @640-screen {
+  @media @min-640-screen {
       width: @640-item-width;
   }
-  @media @768-screen {
+  @media @min-768-screen {
       width: @768-item-width;
   }
-  @media @1024-screen {
+  @media @min-1024-screen {
       width: @1024-item-width;
   }
-  @media @1280-screen {
+  @media @min-1280-screen {
       width: @1280-item-width;
   }
   .grid-content {
