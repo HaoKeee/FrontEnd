@@ -58,7 +58,7 @@ export default {
         color: #fff;
         padding: 0 0.75rem;
         .nav-height-offset {
-            height: 100px;
+            height: 150px;
         }
     }
 }

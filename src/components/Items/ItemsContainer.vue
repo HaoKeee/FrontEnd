@@ -2,23 +2,29 @@
     <div class="items-container">
         <page-selector></page-selector>
             <div class="flex-box">
-                <item></item>
-                <item></item>
-                <item></item>
-                <item></item>
-                <item></item>
-                <item></item>
-                <item></item>
-                <item></item>
-                <item></item>
-                <item></item>
+                <!-- <grid-item></grid-item>
+                <grid-item></grid-item>
+                <grid-item></grid-item>
+                <grid-item></grid-item>
+                <grid-item></grid-item>
+                <grid-item></grid-item>
+                <grid-item></grid-item>
+                <grid-item></grid-item>
+                <grid-item></grid-item>
+                <grid-item></grid-item> -->
+                <card-item></card-item>
+                <card-item></card-item>
+                <card-item></card-item>
+                <card-item></card-item>
+                <card-item></card-item>
             </div>
         <page-selector></page-selector>
     </div>
 </template>
 
 <script>
-import Item from './Item.vue'
+import CardItem from './CardItem.vue'
+import GridItem from './GridItem.vue'
 import PageSelector from './PageSelector.vue'
 export default {
     name: 'ItemsContainer',
@@ -29,7 +35,8 @@ export default {
     },
     components: {
         PageSelector: PageSelector,
-        Item: Item,
+        GridItem: GridItem,
+        CardItem: CardItem,
     }
 }
 </script>
