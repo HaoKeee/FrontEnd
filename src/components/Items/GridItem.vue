@@ -1,10 +1,11 @@
 <template>
   <div class="grid">
     <div class="grid-content" @mouseenter="switchInfo" @mouseleave="switchInfo">
-      <div class="tag">{{status}}/{{category}}</div>
-      <span class="fold"></span>
+      <div class="tag" v-if="!disableTag">{{status}}/{{category}}</div>
+      <span class="fold" v-if="!disableTag"></span>
       <el-image :src="imgSrc" fit="fit" :alt="title"></el-image>
-      <transition enter-active-class="item-aside-on" leave-active-class="item-aside-off">
+      <button class="add-shelf"><i class="iconfont">&#xe629;</i></button>
+      <transition enter-active-class="item-aside-on" leave-active-class="item-aside-off" v-if="!disableAside">
         <ul class="meta" v-show="showAside">
           <li>
             <i class="iconfont">&#xe689;</i>
@@ -20,32 +21,28 @@
           </li>
         </ul>
       </transition>
-      <transition enter-active-class="item-title-on" leave-active-class="item-title-off">
-        <div class="item-title" :style="titleStyle">{{title}} 更新至 {{chapterNum}}话</div>
-      </transition>
+      <div class="item-title">{{title}} 更新至 {{chapterNum}}话</div>
     </div>
   </div>
 </template>
 <script>
 export default {
-    name: 'Item',
-    data() {
-        return {
-          title: '小林家的龙女仆小林家的龙女仆小林家的龙女仆小林家的龙女仆小林家的龙女仆小林家的龙女仆小林家的龙女仆',
-          titleStyle: {
-            'white-space': 'nowrap',
-          },
-          imgSrc: 'src/assets/images/cover.png',
-          status: '连载',
-          category: '冒险',
-          chapterNum: 176,
-          hot: 0.35,
-          showAside: false,
-          peopleViewed: 999,
-          favoritedNum: 999,
-          updated_time: '2021/05/01 00:00:00',
-        }
-    },
+  name: 'Item',
+  data() {
+    return {
+      showAside: false,
+      title: this.data.title,
+      imgSrc: this.data.imgSrc,
+      status: this.data.status,
+      category: this.data.category,
+      chapterNum: this.data.chapterNum,
+      hot: this.data.hot,
+      peopleViewed: this.data.peopleViewed,
+      favoritedNum: this.data.favoritedNum,
+      updated_time: this.data.favoritedNum,
+    }
+  },
+  props: ['data','disableAside','disableTag'],
   computed: {
     rate() {
       if (this.hot <= 1) {
@@ -94,8 +91,6 @@ export default {
   methods: {
     switchInfo() {
       this.showAside = this.showAside == true ? false : true
-      this.titleStyle.whiteSpace = this.titleStyle.whiteSpace == 'normal' ? 'nowrap' : 'normal'
-      // this.titleStyle.height = this.titleStyle.height == '80px' ? 'auto' : '80px'
     },
   },
 }
@@ -104,16 +99,18 @@ export default {
 @1280-item-width: 16.666667%;
 @1024-item-width: 20%;
 @768-item-width: 25%;
-@640-item-width: 33.333333%;
+@480-item-width: 33.333333%;
 @min-item-width: 50%;
 @item-margin: 16px;
+@item-height: 200px;
 
 .grid{
   font-size: 14px;
   width: @min-item-width;
   margin: 0 0 @item-margin 0;
-  @media @min-640-screen {
-      width: @640-item-width;
+  // height: @item-height;
+  @media @min-480-screen {
+      width: @480-item-width;
   }
   @media @min-768-screen {
       width: @768-item-width;
@@ -152,21 +149,34 @@ export default {
       width: 0px;
       height: 0px;
     }
-    // img {
-    //   top: 0px;
-    //   left: 0px;
-    //   bottom: 0px;
-    //   right: 0px;
-    //   width: 100%;
-    //   object-fit: cover;
-    // }
+    img {
+
+    }
+    .add-shelf {
+      position: absolute;
+      border: 0px;
+      padding: 0px;
+      bottom: 20%;
+      opacity: 0.7;
+      right: 15px;
+      width: 25px;
+      height: 25px;
+      background: #fff;
+      border-radius: 50%;
+      z-index: 2;
+      i {
+        font-size: 17px;
+      }
+    }
     .item-title {
       position: absolute;
       display: inline-block;
+      font-size: 16px;
       padding: 5px 5%;
       background-color: rgba(100,101,102, 0.5);
       border: 1% solid #000;
       border-radius: 3px;
+      white-space: nowrap;
       left: 0%;
       right: 0%;
       bottom: 0%;
@@ -175,13 +185,12 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-size: 12px;
     }
     ul {
       position: absolute;
       display: block;
       list-style: none;
-      top: 60px;
+      top: 40px;
       left: 0px;
       width: 100px;
       max-width: 80%;
@@ -245,28 +254,6 @@ export default {
       }
       100% {
         opacity: 0;
-      }
-    }
-    .item-title-on {
-      animation: .25s expand-item-title;
-    }
-    .item-title-off {
-      animation: .25s narrow-item-title;
-    }
-    @keyframes expand-item-title {
-      0% {
-        height: 16px;
-      }
-      100% {
-        height: 80px;
-      }
-    }
-    @keyframes narrow-item-title {
-      0% {
-        height: 80px;
-      }
-      100% {
-        height: 16px;
       }
     }
   }

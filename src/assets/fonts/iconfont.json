@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5875521",
+      "name": "add",
+      "font_class": "add",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
       "icon_id": "882476",
       "name": "家电下单种类选择",
       "font_class": "jiadianxiadanzhongleixuanze",

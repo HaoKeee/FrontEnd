@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import PageNav from './PageNav.vue'
+import PageNav from '../common/PageNav.vue'
+import PageFooter from '../common/PageFooter.vue'
 import ItemsContainer from './ItemsContainer.vue'
-import PageFooter from './PageFooter.vue'
 export default {
     name: 'ItemsPage',
     data() {
@@ -58,7 +58,7 @@ export default {
         color: #fff;
         padding: 0 0.75rem;
         .nav-height-offset {
-            height: 150px;
+            height: 100px;
         }
     }
 }

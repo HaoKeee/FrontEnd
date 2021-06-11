@@ -1,14 +1,11 @@
 <template>
     <div class="card-item">
         <div class="card-content">
-            <img :src="imgSrc" :alt="title">
+            <div class="img-container">
+                <img :src="imgSrc" :alt="title">
+                <button class="add-shelf"><i class="iconfont">&#xe629;</i></button>
+            </div>
             <el-divider direction="vertical"></el-divider>
-            <!-- <div class="comic-info">
-                <a class="title"></a>
-                <div class="tag"></div>
-                <div class="intro"></div>
-                <div class="info"></div>
-            </div> -->
             <div class="comic-info">
                 <a class="card-title">{{ title }}</a>
                 <el-divider></el-divider>
@@ -37,7 +34,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <el-image :src="imgSrc" fit="contain" :alt="title"></el-image> -->
         </div>
     </div>
 </template>
@@ -46,19 +42,20 @@ export default {
     name: 'GridItem',
     data() {
         return {
-            title: '小林家的龙女仆小林家的龙女仆小林家的龙女仆小林家的龙女仆小林家的龙女仆小林家的龙女仆小林家的龙女仆',
-            url: 'https://www.baidu.com',
-            status: '连载',
-            category: '冒险',
-            intro: '弹性盒子是 CSS3 的一种新的布局模式。CSS3 弹性盒（ Flexible Box 或 flexbox），是一种当页面需要适应不同的屏幕大小以及设备类型时确保元素拥有恰当的行为的布局方式。引入弹性盒布局模型的目的是提供一种更加有效的方式来对一个容器中的子元素进行排列、对齐和分配空白空间。弹性盒子是 CSS3 的一种新的布局模式。CSS3 弹性盒（ Flexible Box 或 flexbox），是弹性盒子是 CSS3 的一种新的布局模式。CSS3 弹性盒（ Flexible Box 或 flexbox），是弹性盒子是 CSS3 的一种新的布局模式。CSS3 弹性盒（ Flexible Box 或 flexbox），是一种当页面需要适应不同的屏幕大小以及设备类型时确保元素拥有恰当的行为的布局方式。引入弹性盒布局模型的目的是提供一种更加有效的方式来对一个容器中的子元素进行排列、对齐和分配空白空间。弹性盒子是 CSS3 的一种新的布局模式。CSS3 弹性盒（ Flexible Box 或 flexbox），是弹性盒子是 CSS3 的一种新的布局模式。CSS3 弹性盒（ Flexible Box 或 flexbox），是',
-            imgSrc: 'src/assets/images/cover.png',
-            hot: 0.35,
             showAside: false,
-            peopleViewed: 999,
-            favoritedNum: 999,
-            updated_time: '2021/05/01 00:00:00',
+            title: this.data.title,
+            url: this.data.url,
+            status: this.data.status,
+            category: this.data.category,
+            intro: this.data.intro,
+            imgSrc: this.data.imgSrc,
+            hot: this.data.hot,
+            peopleViewed: this.data.peopleViewed,
+            favoritedNum: this.data.favoritedNum,
+            updated_time: this.data.updated_time,
         }
     },
+    props: ['data'],
     computed: {
         rate() {
             if (this.hot <= 1) {
@@ -110,8 +107,12 @@ export default {
 <style lang="less">
 @1024-item-width: 100%;
 @item-margin: 16px;
-@item-height: 245px;
+@item-height: 205px;
 @content-padding: 15px;
+@title-height: 25px;
+@desc-divider-margin: 4.5px;
+@desc-divider-height: 1px;
+@desc-height: @item-height - @content-padding*2 - @title-height - @desc-divider-margin*2 - @desc-divider-height;
 .card-item {
     font-size: 14px;
     width: 50%;
@@ -128,32 +129,48 @@ export default {
         background-color: black;
         padding: @content-padding 2%;
         height: @item-height - @content-padding*2;
-        img {
-            height: 100%;
+        .img-container {
+            position: relative;
+
+            img {
+                height: 100%;
+            }
+            .add-shelf {
+                position: absolute;
+                border: 0px;
+                padding: 0px;
+                bottom: 5%;
+                opacity: 0.7;
+                right: 15px;
+                width: 25px;
+                height: 25px;
+                background: #fff;
+                border-radius: 50%;
+                z-index: 2;
+            }
         }
         .el-divider--vertical {
             height: 100%;
         }
         .comic-info {
-            display: flex;
-            flex-direction: column;
             overflow: hidden;
 
             .card-title {
                 display: block;
-                height: 12%;
-                line-height: 20px;
+                font-size: 16px;
+                height: @title-height;
+                line-height: @title-height;
                 overflow: hidden;
                 text-overflow:ellipsis;
                 white-space: nowrap;
             }
             .el-divider--horizontal {
-                margin: 1% 0px;
-                line-height: 1px;
+                margin: @desc-divider-margin 0px;
+                line-height: @desc-divider-height;
             }
             .card-desc {
                 display: flex;
-                height: 86%;
+                height: @desc-height;
                 ul {
                     list-style: none;
                     padding: 0px;
@@ -182,54 +199,16 @@ export default {
                     }
                 }
                 .intro {
+                    position: relative;
                     display: -webkit-box;
                     width: 100%;
                     height: 100%;
-                    box-sizing: border-box;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    word-break: break-all;
+                    line-height: 20px;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    line-clamp: 2;
-                    -webkit-line-clamp: 2;
+                    text-indent: 2rem;
                 }
-
             }
-            // .card-tag {
-            //     width: fit-content;
-            //     height: 15px;
-            //     line-height: 15px;
-            //     padding: 5px 10px;
-            //     text-align: center;
-            //     white-space: nowrap;
-            //     border-radius: 2px;
-            //     background: linear-gradient(45deg,#18779a 1%,#1ec9e5 64%,#3fd3e2 97%);
-            // }
-            // .card-intro {
-            //     padding: 5px 10px;
-            //     overflow: hidden;
-            //     text-overflow:ellipsis;
-            // }
-            // .card-infos {
-            //     height: 65px;
-            //     ul {
-                    
-            //         list-style: none;
-            //         align-self: flex-end;
-            //         margin: 0;
-            //         li {
-            //             display: flex;
-            //             height: 25px;
-            //             div {
-            //                 width: 50%;
-            //             }
-            //         }
-            //         li:first-child {
-            //             margin: 5px 0px;
-            //         }
-            //     }
-            // }
         }
     }
 }
