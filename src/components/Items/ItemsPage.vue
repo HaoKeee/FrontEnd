@@ -4,13 +4,14 @@
         <main>
             <div class="nav-height-offset"></div>
             <!-- 此处可填充如banner等元素 -->
-            <items-container />
+            <items-container :items="items" />
         </main>
         <page-footer>444</page-footer>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
 import PageNav from '../common/PageNav.vue'
 import PageFooter from '../common/PageFooter.vue'
 import ItemsContainer from './ItemsContainer.vue'
@@ -18,14 +19,25 @@ export default {
     name: 'ItemsPage',
     data() {
         return {
-            msg: 'Hao-Ke!'
+            msg: 'Hao-Ke!',
+            items: [],
         }
     },
     components:{
         PageNav: PageNav,
         ItemsContainer: ItemsContainer,
         PageFooter: PageFooter,
-    }
+    },
+    created() {
+        this.GetItemsData()
+    },
+    methods: {
+        GetItemsData() {
+            axios
+                .get('/src/assets/data/ItemsData.json')
+                .then(response => (this.items = response.data));
+        },
+    },
 }
 </script>
 <style lang="less">

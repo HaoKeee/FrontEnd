@@ -1,5 +1,5 @@
 <template>
-    <el-carousel height="200px">
+    <el-carousel height="300px">
         <el-carousel-item v-for="item of items" :key="item">
             <img :src="item.imgSrc" :alt="item.title" />
             <h4>{{ item.title }}</h4>
@@ -30,5 +30,11 @@ export default {
 };
 </script>
 <style lang="less">
-
+.el-carousel {
+    width: 900px;
+    margin: 0 auto;
+    img {
+        width: 100%;
+    }
+}
 </style>

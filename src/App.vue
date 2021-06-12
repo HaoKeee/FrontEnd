@@ -1,6 +1,6 @@
 <template>
-  <!-- <items-page /> -->
-  <home-page></home-page>
+  <items-page />
+  <!-- <home-page></home-page> -->
 
 </template>
 

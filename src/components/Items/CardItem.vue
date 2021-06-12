@@ -2,8 +2,8 @@
     <div class="card-item">
         <div class="card-content">
             <div class="img-container">
-                <img :src="imgSrc" :alt="title">
-                <button class="add-shelf"><i class="iconfont">&#xe629;</i></button>
+                <img :src="imgSrc" :alt="title" />
+                <!-- <button class="add-shelf"><i class="iconfont">&#xe629;</i></button> -->
             </div>
             <el-divider direction="vertical"></el-divider>
             <div class="comic-info">
@@ -131,7 +131,6 @@ export default {
         height: @item-height - @content-padding*2;
         .img-container {
             position: relative;
-
             img {
                 height: 100%;
             }

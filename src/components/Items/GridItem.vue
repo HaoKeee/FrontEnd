@@ -1,11 +1,11 @@
 <template>
   <div class="grid">
     <div class="grid-content" @mouseenter="switchInfo" @mouseleave="switchInfo">
-      <div class="tag" v-if="!disableTag">{{status}}/{{category}}</div>
-      <span class="fold" v-if="!disableTag"></span>
+      <div class="tag" v-if="!disableInfo">{{status}}/{{category}}</div>
+      <span class="fold" v-if="!disableInfo"></span>
       <el-image :src="imgSrc" fit="fit" :alt="title"></el-image>
       <button class="add-shelf"><i class="iconfont">&#xe629;</i></button>
-      <transition enter-active-class="item-aside-on" leave-active-class="item-aside-off" v-if="!disableAside">
+      <transition enter-active-class="item-aside-on" leave-active-class="item-aside-off" v-if="!disableInfo">
         <ul class="meta" v-show="showAside">
           <li>
             <i class="iconfont">&#xe689;</i>
@@ -42,7 +42,7 @@ export default {
       updated_time: this.data.favoritedNum,
     }
   },
-  props: ['data','disableAside','disableTag'],
+  props: ['data','disableInfo'],
   computed: {
     rate() {
       if (this.hot <= 1) {

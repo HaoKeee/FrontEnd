@@ -24,7 +24,9 @@ export default {
 @reveal-height: 400px;
 .reveal-section {
     background-color: orangered;
-    height: @reveal-height;
+    align-items: center;
+    margin: 0 auto;
+    // height: @reveal-height;
     @media @min-640-screen {
         width: 640px;
     }
@@ -38,7 +40,6 @@ export default {
         width: 1280px;
     }
     
-    margin: 0;
     background-color: #303030;
     flex-grow: 1;
     width: 100%;
